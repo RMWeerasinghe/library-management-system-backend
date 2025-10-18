@@ -18,6 +18,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+
 app.use("/smds/lms/admin", adminRoutes);
 app.use("/smds/lms/members", memberRoutes);
 app.use("/smds/lms/books", bookRoutes);
@@ -29,6 +31,9 @@ app.get("/smds/lms/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Server is healthy" });
+});
 
 
 app.listen(process.env.PORT, () =>
